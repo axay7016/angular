@@ -1,0 +1,40 @@
+<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin: 10px;">Add</button>
+<div class="container" style="border:1px solid; padding:10px; margin: 10px;" *ngFor="let post of posts">
+    <h1>{{post?.title}}</h1>
+    <p>{{post?.description}}</p>
+    <button class="btn btn-danger" (click)="postDelete(post?.id)">Delete</button>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Title:</label>
+                        <input type="text" formControlName="title" class="form-control" style="text-align: unset;">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Description:</label>
+                        <textarea formControlName="description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label"></label>
+                        <button type="submit" class="btn btn-primary">Add Post</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" #closeModal class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

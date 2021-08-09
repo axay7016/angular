@@ -1,0 +1,17 @@
+<div *ngIf="user?.role=='user'">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link">{{user?.name}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)='userLogout()'>Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container" style="border:1px solid; padding:10px; margin: 10px;" *ngFor="let post of posts">
+        <h1>{{post?.title}}</h1>
+        <p>{{post?.description}}</p>
+    </div>
+</div>
+<app-not-found *ngIf="user?.role!='user'"></app-not-found>

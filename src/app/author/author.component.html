@@ -1,0 +1,41 @@
+<div *ngIf="user?.role=='author'">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" (click)="selectTab('post')">Manage Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="selectTab('profile')">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)='userLogout()'>Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <div *ngIf="tab === 'post'">
+        <app-post></app-post>
+    </div>
+
+    <div class="wrapper fadeInDown" *ngIf="tab == 'profile'">
+        <div id="formContent">
+
+            <div>
+                <h2>Profile</h2>
+            </div>
+
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <input type="text" id="name" class="fadeIn second" formControlName="name" placeholder="Enter your name">
+                <input type="text" id="email" class="fadeIn second" formControlName="email" placeholder="Enter your email">
+
+                <input type="text" id="password" class="fadeIn third" formControlName="password" placeholder="Enter your password">
+                <input type="text" id="password" class="fadeIn third" formControlName="password_confirmation" placeholder="Enter your confirm password">
+                <input type="hidden" id="password" class="fadeIn third" formControlName="id" placeholder="Enter your confirm password">
+
+
+                <input type="submit" class="fadeIn fourth" value="Update">
+            </form>
+
+        </div>
+    </div>
+</div>
+<app-not-found *ngIf="user?.role!='author'"></app-not-found>
